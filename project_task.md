@@ -9,7 +9,7 @@
 
 | Tổng task | Hoàn thành | Đang làm | Chưa làm |
 |-----------|------------|----------|----------|
-| 16        | 3          | 0        | 13       |
+| 16        | 6          | 0        | 10       |
 
 ---
 
@@ -59,40 +59,40 @@
 ## Nhóm B — Core Utilities (Logic xử lý data)
 
 ### TASK-04 · Viết `contactMapper.js` — build contact docs
-- **Trạng thái:** `[ ] CHƯA THỰC HIỆN`
+- **Trạng thái:** `[x] HOÀN THÀNH — 2026-03-28`
 - **Phụ thuộc:** TASK-02 (cấu trúc thư mục)
 - **Song song với:** TASK-05
 - **Mục tiêu hoàn thành:**
-  - [ ] `buildContactDocs(contactJson, options)` trả về `{ contactId, indexDoc, detailDoc, emailLookupDocs, udKeyUpdates }`
-  - [ ] `buildSearchTokens()` xử lý prefix + NFD normalize đúng
-  - [ ] Unit test cơ bản pass (test với 1 contact JSON mẫu)
-  - [ ] allEmails deduplication đúng (lowercase + unique)
-  - [ ] allDomains extraction đúng
+  - [x] `buildContactDocs(contactJson, options)` trả về `{ contactId, indexDoc, detailDoc, emailLookupDocs, udKeyUpdates }`
+  - [x] `buildSearchTokens()` xử lý prefix + NFD normalize đúng
+  - [x] Unit test cơ bản pass (35 tests pass)
+  - [x] allEmails deduplication đúng (lowercase + unique)
+  - [x] allDomains extraction đúng
 - **Output file:** `functions/utils/contactMapper.js`, `functions/utils/searchTokens.js`
 
 ---
 
 ### TASK-05 · Viết `writeContact.js` — atomic batch write & delete
-- **Trạng thái:** `[ ] CHƯA THỰC HIỆN`
+- **Trạng thái:** `[x] HOÀN THÀNH — 2026-03-28`
 - **Phụ thuộc:** TASK-04 (contactMapper), TASK-01 (firebase-admin)
 - **Song song với:** TASK-06
 - **Mục tiêu hoàn thành:**
-  - [ ] `writeContact(contactJson, options)` batch write tất cả 4 collections atomically
-  - [ ] `deleteContact(contactId)` cleanup email_lookup + ud_key_lookup đúng
-  - [ ] `FieldValue.arrayUnion` / `arrayRemove` dùng đúng cho ud_key_lookup
-  - [ ] Xử lý trường hợp contact đã tồn tại (overwrite)
+  - [x] `writeContact(contactJson, options)` batch write tất cả 4 collections atomically
+  - [x] `deleteContact(contactId)` cleanup email_lookup + ud_key_lookup đúng
+  - [x] `FieldValue.arrayUnion` / `arrayRemove` dùng đúng cho ud_key_lookup
+  - [x] Xử lý trường hợp contact đã tồn tại (overwrite)
 - **Output file:** `functions/utils/writeContact.js`
 
 ---
 
 ### TASK-06 · Viết `pagination.js` — cursor pagination helper
-- **Trạng thái:** `[ ] CHƯA THỰC HIỆN`
+- **Trạng thái:** `[x] HOÀN THÀNH — 2026-03-28`
 - **Phụ thuộc:** TASK-01 (firebase-admin)
 - **Song song với:** TASK-04, TASK-05
 - **Mục tiêu hoàn thành:**
-  - [ ] Cursor encode/decode (base64 hoặc Firestore DocumentSnapshot)
-  - [ ] Helper build query với cursor từ query params
-  - [ ] Trả về `{ data, nextCursor, hasMore }`
+  - [x] Cursor encode/decode (base64url ← docId)
+  - [x] Helper build query với cursor từ query params
+  - [x] Trả về `{ data, nextCursor, hasMore }`
 - **Output file:** `functions/utils/pagination.js`
 
 ---
@@ -270,7 +270,7 @@ TASK-03 ──┘
 | Đợt | Tasks có thể làm song song |
 |-----|---------------------------|
 | 1   | ~~TASK-01, TASK-02, TASK-03~~, TASK-12 |
-| 2   | TASK-04, TASK-05, TASK-06, TASK-10, TASK-13, TASK-14 |
+| 2   | ~~TASK-04, TASK-05, TASK-06~~, TASK-10, TASK-13, TASK-14 |
 | 3   | TASK-07, TASK-08, TASK-09 |
 | 4   | TASK-11 |
 | 5   | TASK-15 |

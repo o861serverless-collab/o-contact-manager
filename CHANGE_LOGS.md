@@ -1,3 +1,44 @@
+## [TASK-04,05,06] 2026-03-28 — Core Utilities: contactMapper, writeContact, pagination
+
+### Thay đổi kỹ thuật
+
+**TASK-04 — contactMapper.js + searchTokens.js**
+- Tạo mới `functions/utils/searchTokens.js`:
+  - `normalize(str)` — lowercase + NFD strip diacritics (hỗ trợ tiếng Việt: ễ, ă, ơ, ...)
+  - `tokensFromText(text)` — prefix ngrams từ min 2 chars, bỏ 1-char
+  - `buildSearchTokens({displayName, organization, primaryEmail, allEmails})` — dedup + sorted
+- Tạo mới `functions/utils/contactMapper.js`:
+  - `buildContactDocs(contactJson, options)` — transform về `{contactId, indexDoc, detailDoc, emailLookupDocs, udKeyUpdates}`
+  - Hỗ trợ 2 input format: wrapped `{contact:{...}, userDefined:{...}}` và flat `{displayName, emails, ...}`
+  - `encodeDocId(key)` — encode `.` → `,` cho Firestore document IDs
+  - `extractEmails()`, `extractPhones()`, `extractDisplayName()`, `extractUdKeys()` — các helper extract fields
+  - allEmails: dedup + lowercase; allDomains: extract domain từ mỗi email
+  - Auto-generate contactId bằng `nanoid(12)` nếu không truyền
+- Tạo mới `tests/contactMapper.test.js` — 35 unit tests, 100% pass
+
+**TASK-05 — writeContact.js**
+- Tạo mới `functions/utils/writeContact.js`:
+  - `writeContact(contactJson, options)` — 1 Firestore batch: set index, set detail, delete cũ email_lookup, set mới email_lookup, arrayRemove cũ ud_key_lookup, arrayUnion mới ud_key_lookup
+  - `deleteContact(contactId)` — đọc index → batch delete index + detail + email_lookups + arrayRemove ud_key_lookups
+  - `bulkWriteContacts(array, {concurrency, onProgress})` — Promise.allSettled với chunk size 5
+  - isUpdate=true: đọc allEmails + userDefinedKeys cũ để cleanup diff trước khi write
+  - FieldValue.increment(-1/+1) trên ud_key_lookup.count
+
+**TASK-06 — pagination.js**
+- Tạo mới `functions/utils/pagination.js`:
+  - `encodeCursor(docId)` / `decodeCursor(cursor)` — base64url
+  - `parseQueryParams(req.query)` — validate + normalize: search, category, domain, email, udKey, hasUD, sort, order, limit (max 200), cursor
+  - `buildQuery(params)` — Firestore query builder với ưu tiên filter: search > email > udKey > category > domain; support combo category+udKey
+  - `paginateQuery(params)` — fetch limit+1, startAfter snapshot, trả `{data, nextCursor, hasMore, count}`
+  - `buildListResponse()` — format response chuẩn với meta object
+
+### Lý do
+- TASK-04: Prerequisite cho mọi thứ — import script, write operations, API routes đều dùng contactMapper
+- TASK-05: Đảm bảo 4 collections luôn consistent — không bao giờ write 1 collection mà thiếu collection kia
+- TASK-06: Cursor pagination giải quyết vấn đề quota — offset-based là O(n) reads với Firestore
+
+---
+
 ## [TASK-01,02,03] 2026-03-28 — Khởi tạo Firebase, Dependencies & Security Rules
 
 ### Thay đổi kỹ thuật

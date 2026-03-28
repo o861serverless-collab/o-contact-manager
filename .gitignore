@@ -1,33 +1,11 @@
-# ── Node.js ──────────────────────────────────────────
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-.pnpm-store/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
-# Build output
 dist/
 build/
 .next/
-.nuxt/
-out/
-.output/
-.cache/
-.parcel-cache/
-.turbo/
-
-# Runtime / temp
 *.log
 logs/
 tmp/
 temp/
-.tmp/
-
-# Env & secrets ← KHÔNG BAO GIỜ COMMIT NHỮNG FILE NÀY
 .env
 .env.local
 .env.*.local
@@ -37,27 +15,14 @@ temp/
 serviceAccountKey.json
 *-serviceAccount.json
 *serviceAccountKey*.json
-
-# Editor
 .vscode/
 .idea/
-*.suo
-*.user
-*.swp
-*~
 .DS_Store
 Thumbs.db
-
-# Coverage
 coverage/
 .nyc_output/
-lcov.info
-
-# Misc
 *.tgz
 *.zip
-
-# Firebase
 .firebase/
 firebase-debug.log
 firebase-debug.*.log

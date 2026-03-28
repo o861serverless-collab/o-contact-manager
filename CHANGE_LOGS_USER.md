@@ -1,3 +1,18 @@
+## 2026-03-28 — Hoàn thiện lõi xử lý dữ liệu contact
+
+**Đã thực hiện:**
+- Tìm kiếm giờ hỗ trợ đầy đủ tiếng Việt — gõ "nguyen" vẫn tìm được "Nguyễn"
+- Contact có thể tìm bằng tên, tổ chức, hoặc email (cả email phụ)
+- Thêm/sửa/xóa contact giờ cập nhật đồng thời tất cả chỉ mục — không bao giờ bị mất đồng bộ
+- Phân trang cursor-based — tải trang tiếp theo mà không cần đọc lại từ đầu
+- Hỗ trợ lọc: theo tên, email, domain, category, userDefined keys, hoặc kết hợp nhiều filter
+
+**Tiếp theo:**
+- Viết API routes: CRUD contacts (TASK-07), lookup endpoints (TASK-08)
+- Viết middleware xác thực API key (TASK-10)
+
+---
+
 ## 2026-03-28 — Cài đặt nền tảng kỹ thuật
 
 **Đã thực hiện:**
@@ -8,9 +23,9 @@
 - Tạo template file cấu hình môi trường (`.env.example`)
 
 **Tiếp theo:**
-- Viết logic xử lý dữ liệu contact (TASK-04: contactMapper)
-- Viết logic ghi/xóa contact vào database (TASK-05: writeContact)
-- Viết phân trang cursor (TASK-06: pagination)
+- Viết logic xử lý dữ liệu contact (TASK-04: contactMapper) ✅
+- Viết logic ghi/xóa contact vào database (TASK-05: writeContact) ✅
+- Viết phân trang cursor (TASK-06: pagination) ✅
 
 ---
 
