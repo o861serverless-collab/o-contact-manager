@@ -3,13 +3,23 @@
 import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react'
 import { clsx } from 'clsx'
 
+/**
+ * Props for the text input primitive with labels, hints, and adornments.
+ */
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  /** Optional field label shown above the input. */
   label?: string
+  /** Validation or helper error message shown below the input. */
   error?: string
+  /** Supporting hint text shown when there is no error. */
   hint?: string
+  /** Leading icon or node rendered inside the input. */
   prefixIcon?: ReactNode
+  /** Trailing icon or node rendered inside the input. */
   suffixIcon?: ReactNode
+  /** Callback fired when the built-in clear button is pressed. */
   onClear?: () => void
+  /** Enables the built-in clear button when the input has a value. */
   clearable?: boolean
 }
 

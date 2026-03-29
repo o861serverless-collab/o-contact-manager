@@ -3,15 +3,27 @@
 import { Modal } from './Modal'
 import { Button } from './Button'
 
+/**
+ * Props for the reusable confirm/cancel dialog.
+ */
 interface ConfirmDialogProps {
+  /** Controls whether the dialog is rendered. */
   open: boolean
+  /** Called when the dialog should close without confirming. */
   onClose: () => void
+  /** Called when the user confirms the action. */
   onConfirm: () => void
+  /** Dialog heading text. */
   title: string
+  /** Primary explanatory copy. */
   message: string
+  /** Label for the confirm button. */
   confirmLabel?: string
+  /** Label for the cancel button. */
   cancelLabel?: string
+  /** Uses danger styling for destructive actions. */
   danger?: boolean
+  /** Shows a loading state on the confirm button. */
   loading?: boolean
 }
 

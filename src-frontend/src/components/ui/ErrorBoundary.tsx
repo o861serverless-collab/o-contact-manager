@@ -2,18 +2,26 @@
 
 import { Component, type ErrorInfo, type ReactNode } from 'react'
 
-interface Props {
+/**
+ * Props for the render error boundary.
+ */
+interface ErrorBoundaryProps {
+  /** Descendant tree protected by the boundary. */
   children: ReactNode
+  /** Optional fallback UI shown instead of the default error state. */
   fallback?: ReactNode
 }
 
+/**
+ * Internal error boundary state.
+ */
 interface State {
   hasError: boolean
   error?: Error
 }
 
-export class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
+export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
+  constructor(props: ErrorBoundaryProps) {
     super(props)
     this.state = { hasError: false }
   }

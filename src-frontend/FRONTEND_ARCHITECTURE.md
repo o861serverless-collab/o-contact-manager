@@ -177,6 +177,7 @@ ContactsPage
 - A-Z grouping with virtualized rows
 - Grid/list view switching
 - Contact detail side panel on larger screens
+- Mobile swipe quick actions in contact rows
 
 ### Search
 
@@ -191,6 +192,7 @@ ContactsPage
 
 - Create and edit flows
 - Dynamic emails, phones, and userDefined fields
+- Categories multi-select with chips, suggestions, and create-new flow
 - Zod validation
 - Unsaved-change navigation warning
 
@@ -204,7 +206,7 @@ ContactsPage
 ### Category Intelligence
 
 - Category summary is derived client-side by paging through contacts
-- Used by sidebar, stats page, filter drawer, and form suggestions
+- Used by sidebar, stats page, filter drawer, and form suggestions/multi-select
 
 ---
 

@@ -6,10 +6,17 @@ import { getInitials, getAvatarColor } from '@/utils/avatar'
 
 type AvatarSize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 
+/**
+ * Props for the generic avatar primitive.
+ */
 interface AvatarProps {
+  /** Display name used for initials fallback and accessibility labels. */
   name?: string | null
+  /** Photo URL to render when available. */
   photoUrl?: string | null
+  /** Size token for the avatar footprint. */
   size?: AvatarSize
+  /** Additional class names for local overrides. */
   className?: string
 }
 

@@ -7,11 +7,19 @@ import { Spinner } from './Spinner'
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger'
 type Size = 'sm' | 'md' | 'lg'
 
+/**
+ * Props accepted by the shared button primitive.
+ */
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Visual style variant for the button. */
   variant?: Variant
+  /** Size token controlling height and spacing. */
   size?: Size
+  /** Replaces content with a spinner and disables interaction. */
   loading?: boolean
+  /** Optional icon rendered next to the button label. */
   icon?: ReactNode
+  /** Controls whether the icon appears before or after the label. */
   iconPosition?: 'left' | 'right'
 }
 

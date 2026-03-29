@@ -59,9 +59,11 @@ Default behavior:
 ## Current Features
 
 - Infinite contacts list with virtualized A-Z grouping
+- Mobile swipe quick actions in list view
 - List/grid toggle
 - Search by name, organization, exact email, and UD key
 - Contact detail, create, edit, delete
+- Category multi-select with chip editor and create-new support
 - Unsaved form leave warning
 - JSON and `.vcf` import
 - JSON and VCF export

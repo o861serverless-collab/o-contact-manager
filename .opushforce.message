@@ -1,0 +1,3 @@
+Frontend hiện đã lên mức 18/18 task hoàn thành, và tài liệu đã được cập nhật lại ở FRONTEND_TASKS.md, FRONTEND_ARCHITECTURE.md, và README.md.
+
+Phần code đã hoàn thiện gồm categories multi-select mới ở CategoryMultiSelect.tsx và ContactForm.tsx, swipe quick actions trên mobile ở ContactListItem.tsx, cùng với Dropdown keyboard navigation và polish cho UI primitives ở Dropdown.tsx và Drawer.tsx.

@@ -12,14 +12,14 @@
 
 | Tổng task | Hoàn thành | Một phần | Chưa làm |
 |-----------|------------|----------|----------|
-| 18        | 15         | 3        | 0        |
+| 18        | 18         | 0        | 0        |
 
 ### Kết quả xác minh gần nhất
 
 - [x] `npm run type-check` pass
 - [x] `npm run lint` pass
 - [x] `npm run build` pass
-- [x] `npm run dev` boot thành công; khi verify cổng `5173` đang bận nên Vite tự chuyển sang `5174`
+- [x] `npm run dev` boot thành công tại `http://127.0.0.1:5173/`
 
 ### Quy ước trạng thái
 
@@ -27,11 +27,11 @@
 - `[~] THỰC HIỆN MỘT PHẦN`: đã có code chính, nhưng vẫn còn lệch một phần so với acceptance criteria gốc
 - `[ ] CHƯA THỰC HIỆN`: chưa có triển khai đáng kể
 
-### Hạng mục còn partial nổi bật
+### Ghi chú cập nhật mới nhất
 
-- `FE-08`: component primitives đã dùng được, nhưng chưa bổ sung đầy đủ JSDoc/keyboard behavior như spec gốc
-- `FE-10`: list/grid/detail chạy tốt, nhưng swipe actions mobile vẫn chưa làm riêng
-- `FE-11`: form/detail đã hoàn chỉnh phần chính, nhưng UX categories vẫn theo kiểu input + suggestion thay vì multi-select riêng
+- `FE-08`: đã bổ sung JSDoc cho UI primitives, `Dropdown` có keyboard navigation, `Drawer` phản hồi theo viewport
+- `FE-10`: `ContactListItem` đã có swipe quick actions trên mobile
+- `FE-11`: `ContactForm` đã chuyển sang categories multi-select dạng chip, hỗ trợ gợi ý và tạo nhóm mới
 
 ---
 
@@ -417,7 +417,7 @@ interface FilterStore {
 ---
 
 ### TASK-FE-08 · Base UI Primitives
-- **Trạng thái:** `[~] THỰC HIỆN MỘT PHẦN`
+- **Trạng thái:** `[x] HOÀN THÀNH`
 - **Phụ thuộc:** TASK-FE-01, TASK-FE-02
 - **Song song với:** TASK-FE-09, TASK-FE-10
 - **Estimated:** 3h
@@ -489,7 +489,7 @@ interface FilterStore {
 ---
 
 ### TASK-FE-10 · Contact List & Avatar Components
-- **Trạng thái:** `[~] THỰC HIỆN MỘT PHẦN`
+- **Trạng thái:** `[x] HOÀN THÀNH`
 - **Phụ thuộc:** TASK-FE-06, TASK-FE-07, TASK-FE-08
 - **Song song với:** TASK-FE-11, TASK-FE-12
 - **Estimated:** 3h
@@ -517,7 +517,7 @@ interface FilterStore {
 ---
 
 ### TASK-FE-11 · Contact Detail & Form Components
-- **Trạng thái:** `[~] THỰC HIỆN MỘT PHẦN`
+- **Trạng thái:** `[x] HOÀN THÀNH`
 - **Phụ thuộc:** TASK-FE-06, TASK-FE-08
 - **Song song với:** TASK-FE-10, TASK-FE-12
 - **Estimated:** 4h

@@ -6,11 +6,19 @@ import { clsx } from 'clsx'
 type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info'
 type BadgeSize = 'sm' | 'md'
 
+/**
+ * Props for compact status and category labels.
+ */
 interface BadgeProps {
+  /** Text or content rendered inside the badge. */
   children: ReactNode
+  /** Visual color variant. */
   variant?: BadgeVariant
+  /** Size token for padding and font size. */
   size?: BadgeSize
+  /** Additional class names for local overrides. */
   className?: string
+  /** Renders a small leading status dot. */
   dot?: boolean
 }
 

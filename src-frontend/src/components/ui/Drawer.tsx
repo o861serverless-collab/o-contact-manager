@@ -1,18 +1,28 @@
 // Path: src-frontend/src/components/ui/Drawer.tsx
 
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { clsx } from 'clsx'
 import { createPortal } from 'react-dom'
 
 type DrawerSide = 'bottom' | 'right' | 'left'
 
+/**
+ * Props for the responsive drawer primitive.
+ */
 interface DrawerProps {
+  /** Controls whether the drawer is rendered. */
   open: boolean
+  /** Called when the drawer should be dismissed. */
   onClose: () => void
+  /** Optional heading shown in the drawer header. */
   title?: string
+  /** Drawer body content. */
   children: ReactNode
+  /** Preferred origin side for the drawer. */
   side?: DrawerSide
+  /** Additional class names applied to the panel. */
   className?: string
+  /** Allows closing the drawer by clicking the backdrop. */
   closeOnBackdrop?: boolean
 }
 
@@ -43,6 +53,23 @@ export function Drawer({
   className,
   closeOnBackdrop = true,
 }: DrawerProps) {
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches
+  )
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const media = window.matchMedia('(min-width: 1024px)')
+    const updateDesktop = (event?: MediaQueryListEvent) => {
+      setIsDesktop(event?.matches ?? media.matches)
+    }
+
+    updateDesktop()
+    media.addEventListener('change', updateDesktop)
+    return () => media.removeEventListener('change', updateDesktop)
+  }, [])
+
   useEffect(() => {
     if (!open) return
     const handleKey = (e: KeyboardEvent) => {
@@ -58,7 +85,8 @@ export function Drawer({
 
   if (!open) return null
 
-  const { panel } = sideClasses[side]
+  const effectiveSide = side === 'bottom' && isDesktop ? 'right' : side
+  const { panel } = sideClasses[effectiveSide]
 
   return createPortal(
     <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
@@ -74,9 +102,9 @@ export function Drawer({
           panel,
           className
         )}
-      >
+        >
         {/* Handle (bottom drawer) */}
-        {side === 'bottom' && (
+        {effectiveSide === 'bottom' && (
           <div className="flex justify-center pt-3 pb-1 shrink-0">
             <div className="h-1 w-10 rounded-full bg-divider" />
           </div>

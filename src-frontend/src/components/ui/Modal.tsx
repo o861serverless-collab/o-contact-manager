@@ -1,16 +1,26 @@
 // Path: src-frontend/src/components/ui/Modal.tsx
 
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useId, useRef, type ReactNode } from 'react'
 import { clsx } from 'clsx'
 import { createPortal } from 'react-dom'
 
+/**
+ * Props for the modal dialog primitive.
+ */
 interface ModalProps {
+  /** Controls whether the dialog is rendered. */
   open: boolean
+  /** Called when the dialog should be dismissed. */
   onClose: () => void
+  /** Optional heading displayed in the dialog header. */
   title?: string
+  /** Modal body content. */
   children: ReactNode
+  /** Width preset for the dialog panel. */
   size?: 'sm' | 'md' | 'lg'
+  /** Allows closing the dialog by clicking the backdrop. */
   closeOnBackdrop?: boolean
+  /** Additional class names applied to the panel. */
   className?: string
 }
 
@@ -30,6 +40,7 @@ export function Modal({
   className,
 }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null)
+  const titleId = useId()
 
   // Focus trap & keyboard close
   useEffect(() => {
@@ -77,7 +88,7 @@ export function Modal({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
-      aria-labelledby={title ? 'modal-title' : undefined}
+      aria-labelledby={title ? titleId : undefined}
     >
       {/* Backdrop */}
       <div
@@ -96,7 +107,7 @@ export function Modal({
       >
         {title && (
           <div className="flex items-center justify-between px-6 py-4 border-b border-divider">
-            <h2 id="modal-title" className="text-title-md text-on-surface">
+            <h2 id={titleId} className="text-title-md text-on-surface">
               {title}
             </h2>
             <button

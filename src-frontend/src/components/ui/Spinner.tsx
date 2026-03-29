@@ -4,8 +4,13 @@ import { clsx } from 'clsx'
 
 type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg'
 
+/**
+ * Props for the loading spinner primitive.
+ */
 interface SpinnerProps {
+  /** Size token for the spinner diameter and border width. */
   size?: SpinnerSize
+  /** Additional class names applied to the spinner element. */
   className?: string
   /** Show full-screen overlay */
   overlay?: boolean

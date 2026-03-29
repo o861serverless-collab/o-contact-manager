@@ -1,11 +1,12 @@
 // Path: src-frontend/src/components/contact/ContactForm.tsx
 
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import { EmailFields, PhoneFields, UserDefinedFields } from './ContactFormFields'
+import { CategoryMultiSelect } from './CategoryMultiSelect'
 import { useCategories } from '@/hooks/useCategories'
 import { contactFormSchema, type ContactFormValues } from '@/utils/validators'
 import type { ContactWithDetail } from '@/types/contact.types'
@@ -101,27 +102,19 @@ export function ContactForm({
       <PhoneFields control={control} register={register} />
 
       {/* Categories */}
-      <div className="flex flex-col gap-1">
-        <label className="text-label text-on-surface font-medium">Nhóm</label>
-        <Input
-          list="contact-category-list"
-          placeholder="myContacts, friends, work (cách nhau bằng dấu phẩy)"
-          {...register('contact.categories', {
-            setValueAs: (v: string | string[]) =>
-              typeof v === 'string'
-                ? v.split(',').map((s) => s.trim()).filter(Boolean)
-                : v,
-          })}
-        />
-        <datalist id="contact-category-list">
-          {(categories ?? []).map((category) => (
-            <option key={category.name} value={category.name} />
-          ))}
-        </datalist>
-        <p className="text-body-sm text-on-surface-variant">
-          Nhập các nhóm cách nhau bằng dấu phẩy
-        </p>
-      </div>
+      <Controller
+        control={control}
+        name="contact.categories"
+        render={({ field, fieldState }) => (
+          <CategoryMultiSelect
+            value={field.value ?? []}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+            suggestions={categories ?? []}
+            error={fieldState.error?.message}
+          />
+        )}
+      />
 
       {/* Note */}
       <div className="flex flex-col gap-1">

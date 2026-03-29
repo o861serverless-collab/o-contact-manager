@@ -3,11 +3,19 @@
 import { type ReactNode } from 'react'
 import { clsx } from 'clsx'
 
+/**
+ * Props for empty and zero-data states.
+ */
 interface EmptyStateProps {
+  /** Optional illustration or icon. */
   icon?: ReactNode
+  /** Main empty-state heading. */
   title: string
+  /** Supporting copy below the title. */
   description?: string
+  /** Optional CTA element rendered below the description. */
   action?: ReactNode
+  /** Additional class names for layout overrides. */
   className?: string
 }
 
