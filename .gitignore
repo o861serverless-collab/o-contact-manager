@@ -27,3 +27,4 @@ coverage/
 firebase-debug.log
 firebase-debug.*.log
 .opushforce.message
+.opushforce.message
